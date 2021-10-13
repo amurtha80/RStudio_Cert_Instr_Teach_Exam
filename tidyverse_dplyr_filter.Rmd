@@ -23,18 +23,23 @@ output:
 
 ---
 
-class: center, right
+class: middle, center
 
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE)
 ```
 
-background-image: url("images/color-lens_filter.jpg)
+background-image: url("images/color-lens-filters.jpg")
+background-position: center
 background-size: cover
 
-# Tidyverse
-## Dplyr
-## Filter 
+.right[
+  .larger[.embolden[
+  #R - Tidyverse
+  #Dplyr Package  
+  #Filter Function
+  ]]
+]
 
 ---
 class: inverse, center, middle
