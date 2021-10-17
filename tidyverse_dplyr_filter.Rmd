@@ -102,6 +102,12 @@ background-size: 20%
 
 ---
 
+#Filter Concept Map
+
+<center><img src="images/dplyr_filter_006.png" width="700px" height="600px" /></center>
+
+---
+
 background-image: url("images/camera_filter_lens.jpg")
 background-position: left bottom
 background-size: 20%
@@ -135,11 +141,14 @@ background-size: 20%
 ]
 
 ---
-background-image: url(`r xaringan:::karl`)
-background-position: 50% 50%
-class: center, bottom, inverse
 
-# You only live once!
+background-image: url("images/camera_filter_lens.jpg")
+background-position: left bottom
+background-size: 20%
+
+#Logical Operators
+
+
 
 ---
 
