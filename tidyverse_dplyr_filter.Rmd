@@ -77,7 +77,7 @@ background-size: cover
 
 background-image: url("images/camera_filter_lens.jpg")
 background-position: left bottom
-background-size: 20%
+background-size: 15%
 
 # Filter to keep only what you need
 
@@ -110,7 +110,7 @@ background-size: 20%
 
 background-image: url("images/camera_filter_lens.jpg")
 background-position: left bottom
-background-size: 20%
+background-size: 15%
 
 #Comparison Operators
 
@@ -142,7 +142,7 @@ background-size: 20%
 
 background-image: url("images/camera_filter_lens.jpg")
 background-position: left bottom
-background-size: 20%
+background-size: 15%
 
 #Logical Operators
 
@@ -168,6 +168,10 @@ background-size: 20%
 ]
 
 ---
+
+background-image: url("images/camera_filter_lens.jpg")
+background-position: left bottom
+background-size: 15%
 
 # Knowledge Check
 
