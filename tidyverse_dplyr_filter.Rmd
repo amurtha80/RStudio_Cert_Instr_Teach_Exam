@@ -27,6 +27,8 @@ class: middle, center
 
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
 ```
 
 background-image: url("images/color-lens-filters.jpg")
@@ -40,6 +42,36 @@ background-size: cover
   #Filter Function
   ]]
 ]
+
+---
+
+#Filter Concept Map
+
+<center><img src="images/dplyr_filter_001.png" width="700px" height="600px" /></center>
+
+---
+
+#Filter Concept Map
+
+<center><img src="images/dplyr_filter_002.png" width="700px" height="600px" /></center>
+
+---
+
+#Filter Concept Map
+
+<center><img src="images/dplyr_filter_003.png" width="700px" height="600px" /></center>
+
+---
+
+#Filter Concept Map
+
+<center><img src="images/dplyr_filter_004.png" width="700px" height="600px" /></center>
+
+---
+
+#Filter Concept Map
+
+<center><img src="images/dplyr_filter_005.png" width="700px" height="600px" /></center>
 
 ---
 
