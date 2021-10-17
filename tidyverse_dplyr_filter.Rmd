@@ -197,88 +197,51 @@ _**Answer**_: `c` forward slash is not a logical operator. `a` is "or", `b` is "
 
 ---
 
-# remark.js
+#Filter Concept Map
 
-You can see an introduction of remark.js from [its homepage](https://remarkjs.com). You should read the [remark.js Wiki](https://github.com/gnab/remark/wiki) at least once to know how to
-
-- create a new slide (Markdown syntax<sup>*</sup> and slide properties);
-
-- format a slide (e.g. text alignment);
-
-- configure the slideshow;
-
-- and use the presentation (keyboard shortcuts).
-
-It is important to be familiar with remark.js before you can understand the options in **xaringan**.
-
-.footnote[[*] It is different with Pandoc's Markdown! It is limited but should be enough for presentation purposes. Come on... You do not need a slide for the Table of Contents! Well, the Markdown support in remark.js [may be improved](https://github.com/gnab/remark/issues/142) in the future.]
-
----
-background-image: url(`r xaringan:::karl`)
-background-size: cover
-class: center, bottom, inverse
-
-# I was so happy to have discovered remark.js!
-
----
-class: inverse, middle, center
-
-# Using xaringan
+<center><img src="images/dplyr_filter_007.png" width="700px" height="600px" /></center>
 
 ---
 
-# xaringan
+#Filter Concept Map
 
-Provides an R Markdown output format `xaringan::moon_reader` as a wrapper for remark.js, and you can use it in the YAML metadata, e.g.
+<center><img src="images/dplyr_filter_008.png" width="700px" height="600px" /></center>
 
-```yaml
 ---
-title: "A Cool Presentation"
-output:
-  xaringan::moon_reader:
-    yolo: true
-    nature:
-      autoplay: 30000
+
+#Filter Concept Map
+
+<center><img src="images/dplyr_filter_009.png" width="700px" height="600px" /></center>
+
 ---
+
+background-image: url("images/camera_filter_lens.jpg")
+background-position: left bottom
+background-size: 15%
+
+# Filter() Example
+
+- Say we want to find characters that have no hair and have a black eye color
+
+--
+
+```{r filter-example, results="hide"}
+  filter(starwars, hair_color == "none" & eye_color =="black") %>%  #<<
+  select(!(homeworld:starships)) %>% slice_head(n=5)
 ```
 
-See the help page `?xaringan::moon_reader` for all possible options that you can use.
+--
+
+```{r ref.label='filter-example', echo=FALSE}
+```
 
 ---
 
-# remark.js vs xaringan
+background-image: url("images/camera_filter_lens.jpg")
+background-position: left bottom
+background-size: 15%
 
-Some differences between using remark.js (left) and using **xaringan** (right):
-
-.pull-left[
-1. Start with a boilerplate HTML file;
-
-1. Plain Markdown;
-
-1. Write JavaScript to autoplay slides;
-
-1. Manually configure MathJax;
-
-1. Highlight code with `*`;
-
-1. Edit Markdown source and refresh browser to see updated slides;
-]
-
-.pull-right[
-1. Start with an R Markdown document;
-
-1. R Markdown (can embed R/other code chunks);
-
-1. Provide an option `autoplay`;
-
-1. MathJax just works;<sup>*</sup>
-
-1. Highlight code with `{{}}`;
-
-1. The RStudio addin "Infinite Moon Reader" automatically refreshes slides on changes;
-]
-
-.footnote[[*] Not really. See next page.]
+# Fill in the Blank
 
 ---
 
