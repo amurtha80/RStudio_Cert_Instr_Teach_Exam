@@ -243,7 +243,37 @@ background-size: 15%
 
 # Fill in the Blank
 
+_**Question**_: What characters from the Star Wars movies are either species of Wookie or Twi'lek?
+
+```{r filter-fillinblank, eval=FALSE}
+  _____(starwars, _____ == "Wookie" _ species __ _____) %>%  #<<
+  select(!(homeworld:starships)) %>% slice_head(n=5)
+```
+
+--
+
+### Solution
+```{r filter-fillinblank-soln, results="hide"}
+  filter(starwars, species == "Wookiee" | species == "Twi'lek") %>%  #<<
+  select(name, species, sex, homeworld, films) %>% slice_head(n=5)
+```
+
+--
+
+.right[
+```{r ref.label='filter-fillinblank-soln', echo=FALSE}
+```
+]
+
 ---
+
+background-image: url("images/camera_filter_lens.jpg")
+background-position: left bottom
+background-size: 15%
+
+# Gotcha - How to handle NA
+
+
 
 # Math Expressions
 
