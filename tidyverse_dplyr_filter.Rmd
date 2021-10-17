@@ -83,6 +83,22 @@ background-size: 20%
 
 - Retain the observations you need for further analysis
 - Accomplish this by sub-setting the observations based on their values
+- Acts on a data frame / tibble
+- Does not modify columns, keeps some of the rows
+
+<br>
+
+--
+
+- Syntax for filtering:
+
+<br>
+
+--
+
+```{r filter-syntax, eval = FALSE}
+  filter(object, criteria)
+```
 
 ---
 
