@@ -42,9 +42,15 @@ background-size: cover
 ]
 
 ---
-class: inverse, center, middle
 
-# Get Started
+background-image: url("images/camera_filter_lens.jpg")
+background-position: left bottom
+background-size: 20%
+
+# Filter to keep only what you need
+
+- Retain the observations you need for further analysis
+- Accomplish this by sub-setting the observations based on their values
 
 ---
 
