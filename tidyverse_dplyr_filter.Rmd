@@ -126,12 +126,10 @@ background-size: 20%
 
 --
 
-.pull-right[
 ```{r comparison-operator, results="hide"}
-  filter(starwars, species == "Human") %>% 
-  slice_head(n=5)
+  filter(starwars, species == "Human") %>% #<<
+  select(!(homeworld:starships)) %>% slice_head(n=5)
 ```
-]
 
 --
 
@@ -148,19 +146,50 @@ background-size: 20%
 
 #Logical Operators
 
+- Multiple arguments to `filter()` are combined with "and":
+- Every expression must be true in order for a row to be included in output
+- For other types of combinations you'll need to use Boolean operators
+  - `&` is "and"
+  - `|` is "or"
+  - `!` is "not"
+  
+--
 
+```{r logical-operator, results="hide"}
+  filter(starwars, species == "Human", sex == "female") %>% #<<
+  select(!(homeworld:starships)) %>% slice_head(n=5)
+```
+
+--
+
+.right[
+```{r ref.label='logical-operator', echo=FALSE}
+```
+]
 
 ---
 
-# Hello Ninja
+# Knowledge Check
 
-As a presentation ninja, you certainly should not be satisfied by the "Hello World" example. You need to understand more about two things:
+_**Question**_: What does the `filter()` function modify in a data frame / tibble?
 
-1. The [remark.js](https://remarkjs.com) library;
+--
 
-1. The **xaringan** package;
+<br>
+_**Answer**_: `filter()` modifys the rows (observations) within a data frame / tibble
 
-Basically **xaringan** injected the chakra of R Markdown (minus Pandoc) into **remark.js**. The slides are rendered by remark.js in the web browser, and the Markdown source needed by remark.js is generated from R Markdown (**knitr**).
+--
+
+<br>
+_**Question**_: Which of these symbols is not a logical operator?  
+  - a:   `|`  
+  - b:   `&`  
+  - c:   `/`  
+  - d:   `!`  
+
+--
+
+_**Answer**_: `c` forward slash is not a logical operator. `a` is "or", `b` is "and", `d` is "not"
 
 ---
 
