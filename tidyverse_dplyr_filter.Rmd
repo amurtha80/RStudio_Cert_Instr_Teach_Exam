@@ -47,31 +47,31 @@ background-size: cover
 
 #Filter Concept Map
 
-<center><img src="images/dplyr_filter_001.png" width="700px" height="600px" /></center>
+<center><img src="images/dplyr_filter_001.png" width="650px" height="500px" /></center>
 
 ---
 
 #Filter Concept Map
 
-<center><img src="images/dplyr_filter_002.png" width="700px" height="600px" /></center>
+<center><img src="images/dplyr_filter_002.png" width="650px" height="500px" /></center>
 
 ---
 
 #Filter Concept Map
 
-<center><img src="images/dplyr_filter_003.png" width="700px" height="600px" /></center>
+<center><img src="images/dplyr_filter_003.png" width="650px" height="500px" /></center>
 
 ---
 
 #Filter Concept Map
 
-<center><img src="images/dplyr_filter_004.png" width="700px" height="600px" /></center>
+<center><img src="images/dplyr_filter_004.png" width="650px" height="500px" /></center>
 
 ---
 
 #Filter Concept Map
 
-<center><img src="images/dplyr_filter_005.png" width="700px" height="600px" /></center>
+<center><img src="images/dplyr_filter_005.png" width="650px" height="500px" /></center>
 
 ---
 
@@ -104,7 +104,7 @@ background-size: 15%
 
 #Filter Concept Map
 
-<center><img src="images/dplyr_filter_006.png" width="700px" height="600px" /></center>
+<center><img src="images/dplyr_filter_006.png" width="650px" height="500px" /></center>
 
 ---
 
@@ -199,19 +199,19 @@ _**Answer**_: `c` forward slash is not a logical operator. `a` is "or", `b` is "
 
 #Filter Concept Map
 
-<center><img src="images/dplyr_filter_007.png" width="700px" height="600px" /></center>
+<center><img src="images/dplyr_filter_007.png" width="650px" height="500px" /></center>
 
 ---
 
 #Filter Concept Map
 
-<center><img src="images/dplyr_filter_008.png" width="700px" height="600px" /></center>
+<center><img src="images/dplyr_filter_008.png" width="650px" height="500px" /></center>
 
 ---
 
 #Filter Concept Map
 
-<center><img src="images/dplyr_filter_009.png" width="700px" height="600px" /></center>
+<center><img src="images/dplyr_filter_009.png" width="650px" height="500px" /></center>
 
 ---
 
@@ -252,7 +252,7 @@ _**Question**_: What characters from the Star Wars movies are either species of 
 
 --
 
-#### Solution
+_**Solution**_
 ```{r filter-fillinblank-soln, results="hide"}
   filter(starwars, species == "Wookiee" | species == "Twi'lek") %>%  #<<
   select(name, species, sex, homeworld, films) %>% slice_head(n=5)
@@ -303,12 +303,12 @@ background-size: 15%
 
 # Additional Concepts - Filtering when Grouping
 
-- Filtering may yield different results on grouped data frames | tibbles because the expressions are computed within groups
-- Make sure you are aware when you are filtering on an entire data frame | tibble or if you are filtering on groups within the data frame | tibble
+- Filtering may yield different results on grouped data frames | tibbles because expressions are computed within groups
+- Make sure you are aware when applying a global filter or when filtering on groups within the data frame | tibble
 
 --
 
-#### Example
+_**Example**_
 
 ```{r filter-nogroup, results='hide'}
   #The following filters rows where `mass` is greater than the global average
@@ -331,7 +331,7 @@ background-size: 15%
 
 # Filtering when Grouping (cont'd)
 
-#### Grouped Example
+_**Grouped Example**_
 
 ```{r filter-group, results='hide'}
   #This example keeps rows where the `mass` is greater than the gender average
@@ -347,3 +347,44 @@ background-size: 15%
 ]
 
 ---
+
+background-image: url("images/camera_filter_lens.jpg")
+background-position: left bottom
+background-size: 15%
+
+# Code it Yourself!
+
+_**Question**_: Which non-Human Star Wars characters are in more than two films?
+
+--
+
+_**Solution**_
+
+```{r filter-DIYend, results='hide'}
+  filter(starwars, species != "Human", length(films) > 2) #<<
+```
+
+.right[
+```{r ref.label='filter-DIYend', echo=FALSE}
+```
+]
+
+---
+
+# Review Concept Map
+
+<center><img src="images/dplyr_filter_009.png" width="650px" height="500px" /></center>
+
+---
+
+class: middle, center
+
+background-image: url("images/color-lens-filters.jpg")
+background-position: center
+background-size: cover
+
+.right[
+  .larger[.embolden[
+  #Thanks for Filtering!
+  ]]
+]

@@ -33,31 +33,31 @@ background-size: cover
 
 #Filter Concept Map
 
-&lt;center&gt;&lt;img src="images/dplyr_filter_001.png" width="700px" height="600px" /&gt;&lt;/center&gt;
+&lt;center&gt;&lt;img src="images/dplyr_filter_001.png" width="650px" height="500px" /&gt;&lt;/center&gt;
 
 ---
 
 #Filter Concept Map
 
-&lt;center&gt;&lt;img src="images/dplyr_filter_002.png" width="700px" height="600px" /&gt;&lt;/center&gt;
+&lt;center&gt;&lt;img src="images/dplyr_filter_002.png" width="650px" height="500px" /&gt;&lt;/center&gt;
 
 ---
 
 #Filter Concept Map
 
-&lt;center&gt;&lt;img src="images/dplyr_filter_003.png" width="700px" height="600px" /&gt;&lt;/center&gt;
+&lt;center&gt;&lt;img src="images/dplyr_filter_003.png" width="650px" height="500px" /&gt;&lt;/center&gt;
 
 ---
 
 #Filter Concept Map
 
-&lt;center&gt;&lt;img src="images/dplyr_filter_004.png" width="700px" height="600px" /&gt;&lt;/center&gt;
+&lt;center&gt;&lt;img src="images/dplyr_filter_004.png" width="650px" height="500px" /&gt;&lt;/center&gt;
 
 ---
 
 #Filter Concept Map
 
-&lt;center&gt;&lt;img src="images/dplyr_filter_005.png" width="700px" height="600px" /&gt;&lt;/center&gt;
+&lt;center&gt;&lt;img src="images/dplyr_filter_005.png" width="650px" height="500px" /&gt;&lt;/center&gt;
 
 ---
 
@@ -91,7 +91,7 @@ background-size: 15%
 
 #Filter Concept Map
 
-&lt;center&gt;&lt;img src="images/dplyr_filter_006.png" width="700px" height="600px" /&gt;&lt;/center&gt;
+&lt;center&gt;&lt;img src="images/dplyr_filter_006.png" width="650px" height="500px" /&gt;&lt;/center&gt;
 
 ---
 
@@ -206,19 +206,19 @@ _**Answer**_: `c` forward slash is not a logical operator. `a` is "or", `b` is "
 
 #Filter Concept Map
 
-&lt;center&gt;&lt;img src="images/dplyr_filter_007.png" width="700px" height="600px" /&gt;&lt;/center&gt;
+&lt;center&gt;&lt;img src="images/dplyr_filter_007.png" width="650px" height="500px" /&gt;&lt;/center&gt;
 
 ---
 
 #Filter Concept Map
 
-&lt;center&gt;&lt;img src="images/dplyr_filter_008.png" width="700px" height="600px" /&gt;&lt;/center&gt;
+&lt;center&gt;&lt;img src="images/dplyr_filter_008.png" width="650px" height="500px" /&gt;&lt;/center&gt;
 
 ---
 
 #Filter Concept Map
 
-&lt;center&gt;&lt;img src="images/dplyr_filter_009.png" width="700px" height="600px" /&gt;&lt;/center&gt;
+&lt;center&gt;&lt;img src="images/dplyr_filter_009.png" width="650px" height="500px" /&gt;&lt;/center&gt;
 
 ---
 
@@ -270,7 +270,7 @@ _**Question**_: What characters from the Star Wars movies are either species of 
 
 --
 
-#### Solution
+_**Solution**_
 
 ```r
 * filter(starwars, species == "Wookiee" | species == "Twi'lek") %&gt;%
@@ -333,12 +333,12 @@ background-size: 15%
 
 # Additional Concepts - Filtering when Grouping
 
-- Filtering may yield different results on grouped data frames | tibbles because the expressions are computed within groups
-- Make sure you are aware when you are filtering on an entire data frame | tibble or if you are filtering on groups within the data frame | tibble
+- Filtering may yield different results on grouped data frames | tibbles because expressions are computed within groups
+- Make sure you are aware when applying a global filter or when filtering on groups within the data frame | tibble
 
 --
 
-#### Example
+_**Example**_
 
 
 ```r
@@ -371,7 +371,7 @@ background-size: 15%
 
 # Filtering when Grouping (cont'd)
 
-#### Grouped Example
+_**Grouped Example**_
 
 
 ```r
@@ -403,6 +403,64 @@ background-size: 15%
 ]
 
 ---
+
+background-image: url("images/camera_filter_lens.jpg")
+background-position: left bottom
+background-size: 15%
+
+# Code it Yourself!
+
+_**Question**_: Which non-Human Star Wars characters are in more than two films?
+
+--
+
+_**Solution**_
+
+
+```r
+* filter(starwars, species != "Human", length(films) &gt; 2)
+```
+
+.right[
+
+```
+## # A tibble: 48 x 14
+##    name    height  mass hair_color skin_color  eye_color birth_year sex   gender
+##    &lt;chr&gt;    &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;       &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
+##  1 C-3PO      167    75 &lt;NA&gt;       gold        yellow           112 none  mascu~
+##  2 R2-D2       96    32 &lt;NA&gt;       white, blue red               33 none  mascu~
+##  3 R5-D4       97    32 &lt;NA&gt;       white, red  red               NA none  mascu~
+##  4 Chewba~    228   112 brown      unknown     blue             200 male  mascu~
+##  5 Greedo     173    74 &lt;NA&gt;       green       black             44 male  mascu~
+##  6 Jabba ~    175  1358 &lt;NA&gt;       green-tan,~ orange           600 herm~ mascu~
+##  7 Yoda        66    17 white      green       brown            896 male  mascu~
+##  8 IG-88      200   140 none       metal       red               15 none  mascu~
+##  9 Bossk      190   113 none       green       red               53 male  mascu~
+## 10 Ackbar     180    83 none       brown mott~ orange            41 male  mascu~
+## # ... with 38 more rows, and 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;,
+## #   films &lt;list&gt;, vehicles &lt;list&gt;, starships &lt;list&gt;
+```
+]
+
+---
+
+# Review Concept Map
+
+&lt;center&gt;&lt;img src="images/dplyr_filter_009.png" width="650px" height="500px" /&gt;&lt;/center&gt;
+
+---
+
+class: middle, center
+
+background-image: url("images/color-lens-filters.jpg")
+background-position: center
+background-size: cover
+
+.right[
+  .larger[.embolden[
+  #Thanks for Filtering!
+  ]]
+]
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
