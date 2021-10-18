@@ -39,7 +39,7 @@ background-size: cover
   .larger[.embolden[
   #R - Tidyverse
   #Dplyr Package  
-  #Filter Function
+  #filter() Function
   ]]
 ]
 
@@ -156,7 +156,7 @@ background-size: 15%
 --
 
 ```{r logical-operator, results="hide"}
-  filter(starwars, species == "Human", sex == "female") %>% #<<
+  filter(starwars, species == "Human" & sex == "female") %>% #<<
   select(!(homeworld:starships)) %>% slice_head(n=5)
 ```
 
