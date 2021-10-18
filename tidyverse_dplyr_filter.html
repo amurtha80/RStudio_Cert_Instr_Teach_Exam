@@ -303,7 +303,7 @@ background-size: 15%
 - `NA` represents an unknown value so missing values are "**contagious**"
 - Almost any operation involving an unknown value will also be unknown
 - `filter()` only includes rows where the condition is `TRUE`; it excludes both `FALSE` and `NA` values
-- If you want to preserve missing values, ask for them explicity
+- If you want to preserve missing values, ask for them explicitly
 
 --
 
@@ -333,11 +333,33 @@ background-size: 15%
 
 # How to handle NA (cont'd)
 
-_**Question**_: List all Star Wars charaters who _do not_ have a listed homeworld or species
+_**Question**_: List all Star Wars characters who _do not_ have a listed home world or species
 
 --
 
-_**Solution**_
+_**Solution**_:
+
+
+```r
+* starwars %&gt;% filter(is.na(homeworld) | is.na(species)) %&gt;%
+  select(name, homeworld, species, films) %&gt;% slice_head(n=5)
+```
+
+--
+
+.right[
+
+```
+## # A tibble: 5 x 4
+##   name         homeworld species        films    
+##   &lt;chr&gt;        &lt;chr&gt;     &lt;chr&gt;          &lt;list&gt;   
+## 1 Yoda         &lt;NA&gt;      Yoda's species &lt;chr [5]&gt;
+## 2 IG-88        &lt;NA&gt;      Droid          &lt;chr [1]&gt;
+## 3 Arvel Crynyd &lt;NA&gt;      Human          &lt;chr [1]&gt;
+## 4 Qui-Gon Jinn &lt;NA&gt;      Human          &lt;chr [1]&gt;
+## 5 Ric Olié     Naboo     &lt;NA&gt;           &lt;chr [1]&gt;
+```
+]
 
 ---
 

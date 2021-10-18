@@ -46,13 +46,13 @@ _____(starwars, _____ == "Wookie" _ species __ _____) %>%
 
 # Additional Concepts - How to Handle NA
 
-##
-##
-##
-##
-##
+##NA represents an unknown value so missing values are "contagious"
+##Almost any operation involving an unknown value will also be unknown
+##filter() only includes rows where the condition is TRUE; it excludes both FALSE and NA values
+##If you want to preserve missing values, ask for them explicitly
+##If you want to determine if a value is missing, use is.na()
 
-###
+### List all Star Wars characters who do not have a listed home world or species
 
 #-----------------------------------------------------------------------------#
 

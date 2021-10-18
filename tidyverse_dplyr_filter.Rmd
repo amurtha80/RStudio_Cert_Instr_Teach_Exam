@@ -276,7 +276,7 @@ background-size: 15%
 - `NA` represents an unknown value so missing values are "**contagious**"
 - Almost any operation involving an unknown value will also be unknown
 - `filter()` only includes rows where the condition is `TRUE`; it excludes both `FALSE` and `NA` values
-- If you want to preserve missing values, ask for them explicity
+- If you want to preserve missing values, ask for them explicitly
 
 --
 
@@ -303,11 +303,23 @@ background-size: 15%
 
 # How to handle NA (cont'd)
 
-_**Question**_: List all Star Wars charaters who _do not_ have a listed homeworld or species
+_**Question**_: List all Star Wars characters who _do not_ have a listed home world or species
 
 --
 
 _**Solution**_:
+
+```{r filter-handle-na, results='hide'}
+  starwars %>% filter(is.na(homeworld) | is.na(species)) %>% #<<
+  select(name, homeworld, species, films) %>% slice_head(n=5)
+```
+
+--
+
+.right[
+```{r ref.label='filter-handle-na', echo=FALSE}
+```
+]
 
 ---
 
