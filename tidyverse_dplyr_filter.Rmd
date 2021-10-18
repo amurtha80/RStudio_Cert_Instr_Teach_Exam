@@ -301,6 +301,20 @@ background-image: url("images/camera_filter_lens.jpg")
 background-position: left bottom
 background-size: 15%
 
+# How to handle NA (cont'd)
+
+_**Question**_: List all Star Wars charaters who _do not_ have a listed homeworld or species
+
+--
+
+_**Solution**_:
+
+---
+
+background-image: url("images/camera_filter_lens.jpg")
+background-position: left bottom
+background-size: 15%
+
 # Additional Concepts - Filtering when Grouping
 
 - Filtering may yield different results on grouped data frames | tibbles because expressions are computed within groups
