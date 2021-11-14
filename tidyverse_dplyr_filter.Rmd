@@ -23,6 +23,12 @@ output:
 
 ---
 
+background-image: url("images/Anna_Analyst_Learner_Persona.png")
+background-position: center
+background-size: cover
+
+---
+
 class: middle, center
 
 ```{r setup, include=FALSE}
@@ -400,6 +406,25 @@ _**Solution**_
 # Review Concept Map
 
 <center><img src="images/dplyr_filter_009.png" width="650px" height="500px" /></center>
+
+---
+
+class: top, center
+
+background-image: url("images/color-lens-filters.jpg")
+background-position: center
+background-size: cover
+
+.right[
+  .larger[.embolden[
+  #Additional Resources for Filtering:
+  <br>
+  #------------------------
+  ###R4DS Book: Filtering [link](https://r4ds.had.co.nz/transform.html#filter-rows-with-filter)
+  ###Data Transformation Cheat Sheet: [link](https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-transformation.pdf)
+  #------------------------
+  ]]
+]
 
 ---
 
