@@ -13,12 +13,6 @@
     <textarea id="source">
 
 
-background-image: url("images/Anna_Analyst_Learner_Persona.png")
-background-position: center
-background-size: cover
-
----
-
 class: middle, center
 
 
@@ -249,13 +243,13 @@ background-size: 15%
 
 ```
 ## # A tibble: 5 x 9
-##   name      height  mass hair_color skin_color  eye_color birth_year sex   gender
-##   &lt;chr&gt;      &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;       &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
-## 1 Nien Nunb    160    68 none       grey        black             NA male  mascu~
-## 2 Gasgano      122    NA none       white, blue black             NA male  mascu~
-## 3 Kit Fisto    196    87 none       green       black             NA male  mascu~
-## 4 Plo Koon     188    80 none       orange      black             22 male  mascu~
-## 5 Lama Su      229    88 none       grey        black             NA male  mascu~
+##   name      height  mass hair_color skin_color eye_color birth_year sex   gender
+##   &lt;chr&gt;      &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
+## 1 Nien Nunb    160    68 none       grey       black             NA male  mascu~
+## 2 Gasgano      122    NA none       white, bl~ black             NA male  mascu~
+## 3 Kit Fisto    196    87 none       green      black             NA male  mascu~
+## 4 Plo Koon     188    80 none       orange     black             22 male  mascu~
+## 5 Lama Su      229    88 none       grey       black             NA male  mascu~
 ```
 
 ---
@@ -270,7 +264,7 @@ _**Question**_: What characters from the Star Wars movies are either species of 
 
 
 ```r
-* _____(starwars, _____ == "Wookie" _ species __ _____) %&gt;%
+* _____(starwars, _____ == "Wookiee" _ species __ _____) %&gt;%
   select(!(homeworld:starships)) %&gt;% slice_head(n=5)
 ```
 
@@ -300,157 +294,12 @@ _**Solution**_
 
 ---
 
-background-image: url("images/camera_filter_lens.jpg")
-background-position: left bottom
-background-size: 15%
-
-# Additional Concepts - How to handle NA
-
-- `NA` represents an unknown value so missing values are "**contagious**"
-- Almost any operation involving an unknown value will also be unknown
-- `filter()` only includes rows where the condition is `TRUE`; it excludes both `FALSE` and `NA` values
-- If you want to preserve missing values, ask for them explicitly
-
---
-
-&lt;br&gt;
-- If you want to determine if a value is missing, use `is.na()`
-
-
-```r
-  x &lt;- NA
-  is.na(x)
-```
-
---
-
-.right[
-
-```
-## [1] TRUE
-```
-]
-
----
 
 background-image: url("images/camera_filter_lens.jpg")
 background-position: left bottom
 background-size: 15%
 
-# How to handle NA (cont'd)
-
-_**Question**_: List all Star Wars characters who _do not_ have a listed home world or species
-
---
-
-_**Solution**_:
-
-
-```r
-* starwars %&gt;% filter(is.na(homeworld) | is.na(species)) %&gt;%
-  select(name, homeworld, species, films) %&gt;% slice_head(n=5)
-```
-
---
-
-.right[
-
-```
-## # A tibble: 5 x 4
-##   name         homeworld species        films    
-##   &lt;chr&gt;        &lt;chr&gt;     &lt;chr&gt;          &lt;list&gt;   
-## 1 Yoda         &lt;NA&gt;      Yoda's species &lt;chr [5]&gt;
-## 2 IG-88        &lt;NA&gt;      Droid          &lt;chr [1]&gt;
-## 3 Arvel Crynyd &lt;NA&gt;      Human          &lt;chr [1]&gt;
-## 4 Qui-Gon Jinn &lt;NA&gt;      Human          &lt;chr [1]&gt;
-## 5 Ric Olié     Naboo     &lt;NA&gt;           &lt;chr [1]&gt;
-```
-]
-
----
-
-background-image: url("images/camera_filter_lens.jpg")
-background-position: left bottom
-background-size: 15%
-
-# Additional Concepts - Filtering when Grouping
-
-- Filtering may yield different results on grouped data frames | tibbles because expressions are computed within groups
-- Make sure you are aware when applying a global filter or when filtering on groups within the data frame | tibble
-
---
-
-_**Example**_
-
-
-```r
-  #The following filters rows where `mass` is greater than the global average
-* starwars %&gt;% filter(mass &gt; mean(mass, na.rm = TRUE)) %&gt;%
-  select(name, height, mass, species) %&gt;% slice_head(n=5)
-```
-
---
-
-.right[
-
-```
-## # A tibble: 5 x 4
-##   name                  height  mass species
-##   &lt;chr&gt;                  &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;  
-## 1 Darth Vader              202   136 Human  
-## 2 Owen Lars                178   120 Human  
-## 3 Chewbacca                228   112 Wookiee
-## 4 Jabba Desilijic Tiure    175  1358 Hutt   
-## 5 Jek Tono Porkins         180   110 Human
-```
-]
-
----
-
-background-image: url("images/camera_filter_lens.jpg")
-background-position: left bottom
-background-size: 15%
-
-# Filtering when Grouping (cont'd)
-
-_**Grouped Example**_
-
-
-```r
-  #This example keeps rows where the `mass` is greater than the gender average
-* starwars %&gt;% group_by(gender) %&gt;% filter(mass &gt; mean(mass, na.rm = TRUE)) %&gt;%
-  select(name, height, mass, gender, species) %&gt;% slice_head(n=5)
-```
-
---
-
-.right[
-
-```
-## # A tibble: 10 x 5
-## # Groups:   gender [2]
-##    name                  height   mass gender    species 
-##    &lt;chr&gt;                  &lt;int&gt;  &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;   
-##  1 Beru Whitesun lars       165   75   feminine  Human   
-##  2 Ayla Secura              178   55   feminine  Twi'lek 
-##  3 Luminara Unduli          170   56.2 feminine  Mirialan
-##  4 Zam Wesell               168   55   feminine  Clawdite
-##  5 Shaak Ti                 178   57   feminine  Togruta 
-##  6 Darth Vader              202  136   masculine Human   
-##  7 Owen Lars                178  120   masculine Human   
-##  8 Chewbacca                228  112   masculine Wookiee 
-##  9 Jabba Desilijic Tiure    175 1358   masculine Hutt    
-## 10 Jek Tono Porkins         180  110   masculine Human
-```
-]
-
----
-
-background-image: url("images/camera_filter_lens.jpg")
-background-position: left bottom
-background-size: 15%
-
-# Code it Yourself!
+# Filter Challenge - Code it Yourself!
 
 _**Question**_: Which non-Human Star Wars characters are in more than two films?
 
@@ -500,6 +349,26 @@ background-size: cover
 
 .right[
   .larger[.embolden[
+  #Topics covered during next session:
+  &lt;br&gt;
+  #------------------------
+  ###Filter - How to Handle NA Values 
+  ###Filter - Filtering When Grouping
+  ###Filter - Overall Review
+  #------------------------
+  ]]
+]
+
+---
+
+class: top, center
+
+background-image: url("images/color-lens-filters.jpg")
+background-position: center
+background-size: cover
+
+.right[
+  .larger[.embolden[
   #Additional Resources for Filtering:
   &lt;br&gt;
   #------------------------
@@ -519,7 +388,7 @@ background-size: cover
 
 .right[
   .larger[.embolden[
-  #Thanks for Filtering!
+  #See you after the Break!
   ]]
 ]
     </textarea>

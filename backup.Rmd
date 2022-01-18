@@ -23,6 +23,12 @@ output:
 
 ---
 
+background-image: url("images/Anna_Analyst_Learner_Persona.png")
+background-position: center
+background-size: cover
+
+---
+
 class: middle, center
 
 ```{r setup, include=FALSE}
@@ -267,12 +273,118 @@ _**Solution**_
 
 ---
 
+background-image: url("images/camera_filter_lens.jpg")
+background-position: left bottom
+background-size: 15%
+
+# Additional Concepts - How to handle NA
+
+- `NA` represents an unknown value so missing values are "**contagious**"
+- Almost any operation involving an unknown value will also be unknown
+- `filter()` only includes rows where the condition is `TRUE`; it excludes both `FALSE` and `NA` values
+- If you want to preserve missing values, ask for them explicitly
+
+--
+
+<br>
+- If you want to determine if a value is missing, use `is.na()`
+
+```{r filter-isna, results='hide'}
+  x <- NA
+  is.na(x)
+```
+
+--
+
+.right[
+```{r ref.label='filter-isna', echo=FALSE}
+```
+]
+
+---
 
 background-image: url("images/camera_filter_lens.jpg")
 background-position: left bottom
 background-size: 15%
 
-# Filter Challenge - Code it Yourself!
+# How to handle NA (cont'd)
+
+_**Question**_: List all Star Wars characters who _do not_ have a listed home world or species
+
+--
+
+_**Solution**_:
+
+```{r filter-handle-na, results='hide'}
+  starwars %>% filter(is.na(homeworld) | is.na(species)) %>% #<<
+  select(name, homeworld, species, films) %>% slice_head(n=5)
+```
+
+--
+
+.right[
+```{r ref.label='filter-handle-na', echo=FALSE}
+```
+]
+
+---
+
+background-image: url("images/camera_filter_lens.jpg")
+background-position: left bottom
+background-size: 15%
+
+# Additional Concepts - Filtering when Grouping
+
+- Filtering may yield different results on grouped data frames | tibbles because expressions are computed within groups
+- Make sure you are aware when applying a global filter or when filtering on groups within the data frame | tibble
+
+--
+
+_**Example**_
+
+```{r filter-nogroup, results='hide'}
+  #The following filters rows where `mass` is greater than the global average
+  starwars %>% filter(mass > mean(mass, na.rm = TRUE)) %>% #<<
+  select(name, height, mass, species) %>% slice_head(n=5)
+```
+
+--
+
+.right[
+```{r ref.label='filter-nogroup', echo=FALSE}
+```
+]
+
+---
+
+background-image: url("images/camera_filter_lens.jpg")
+background-position: left bottom
+background-size: 15%
+
+# Filtering when Grouping (cont'd)
+
+_**Grouped Example**_
+
+```{r filter-group, results='hide'}
+  #This example keeps rows where the `mass` is greater than the gender average
+  starwars %>% group_by(gender) %>% filter(mass > mean(mass, na.rm = TRUE)) %>% #<<
+  select(name, height, mass, gender, species) %>% slice_head(n=5)
+```
+
+--
+
+.right[
+```{r ref.label='filter-group', echo=FALSE}
+```
+]
+
+---
+
+background-image: url("images/camera_filter_lens.jpg")
+background-position: left bottom
+background-size: 15%
+
+# Code it Yourself!
 
 _**Question**_: Which non-Human Star Wars characters are in more than two films?
 
@@ -305,26 +417,6 @@ background-size: cover
 
 .right[
   .larger[.embolden[
-  #Topics covered during next session:
-  <br>
-  #------------------------
-  ###Filter - How to Handle NA Values 
-  ###Filter - Filtering When Grouping
-  ###Filter - Overall Review
-  #------------------------
-  ]]
-]
-
----
-
-class: top, center
-
-background-image: url("images/color-lens-filters.jpg")
-background-position: center
-background-size: cover
-
-.right[
-  .larger[.embolden[
   #Additional Resources for Filtering:
   <br>
   #------------------------
@@ -344,6 +436,6 @@ background-size: cover
 
 .right[
   .larger[.embolden[
-  #See you after the Break!
+  #Thanks for Filtering!
   ]]
 ]
