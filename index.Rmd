@@ -14,10 +14,6 @@ output:
       highlightLines: true
       countIncrementalSlides: false
       ratio: "16:9"
-      slideNumberFormat: |
-        <div class="progress-bar-container">
-          <div class="progress-bar" style="width: calc(%current% / %total% * 100%);">
-          </div>
     html_document:
       df_print: paged
 
@@ -146,7 +142,7 @@ background-size: 15%
 
 #Logical Operators
 
-- Multiple arguments to `filter()` are combined with "and":
+- Multiple arguments separated by "," within `filter()` are interpreted as "and" condition
 - Every expression must be true in order for a row to be included in output
 - For other types of combinations you'll need to use Boolean operators
   - `&` is "and"
@@ -243,7 +239,7 @@ background-size: 15%
 
 # Fill in the Blank
 
-_**Question**_: What characters from the Star Wars movies are either species of Wookie or Twi'lek?
+_**Question**_: What characters from the Star Wars movies are either species of Wookiee or Twi'lek?
 
 ```{r filter-fillinblank, eval=FALSE}
   _____(starwars, _____ == "Wookiee" _ species __ _____) %>%  #<<
@@ -262,30 +258,6 @@ _**Solution**_
 
 .right[
 ```{r ref.label='filter-fillinblank-soln', echo=FALSE}
-```
-]
-
----
-
-
-background-image: url("images/camera_filter_lens.jpg")
-background-position: left bottom
-background-size: 15%
-
-# Filter Challenge - Code it Yourself!
-
-_**Question**_: Which non-Human Star Wars characters are in more than two films?
-
---
-
-_**Solution**_
-
-```{r filter-DIYend, results='hide'}
-  filter(starwars, species != "Human", length(films) > 2) #<<
-```
-
-.right[
-```{r ref.label='filter-DIYend', echo=FALSE}
 ```
 ]
 

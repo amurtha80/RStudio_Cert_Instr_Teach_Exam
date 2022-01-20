@@ -13,6 +13,12 @@
     <textarea id="source">
 
 
+background-image: url("images/Anna_Analyst_Learner_Persona.png")
+background-position: center
+background-size: cover
+
+---
+
 class: middle, center
 
 
@@ -143,7 +149,7 @@ background-size: 15%
 
 #Logical Operators
 
-- Multiple arguments separated by "," within `filter()` are interpreted as "and" condition
+- Multiple arguments to `filter()` are combined with "and":
 - Every expression must be true in order for a row to be included in output
 - For other types of combinations you'll need to use Boolean operators
   - `&amp;` is "and"
@@ -260,7 +266,7 @@ background-size: 15%
 
 # Fill in the Blank
 
-_**Question**_: What characters from the Star Wars movies are either species of Wookiee or Twi'lek?
+_**Question**_: What characters from the Star Wars movies are either species of Wookie or Twi'lek?
 
 
 ```r
@@ -294,29 +300,195 @@ _**Solution**_
 
 ---
 
-# Review Concept Map
+background-image: url("images/camera_filter_lens.jpg")
+background-position: left bottom
+background-size: 15%
 
-&lt;center&gt;&lt;img src="images/dplyr_filter_009.png" width="650px" height="500px" /&gt;&lt;/center&gt;
+# Additional Concepts - How to handle NA
+
+- `NA` represents an unknown value so missing values are "**contagious**"
+- Almost any operation involving an unknown value will also be unknown
+- `filter()` only includes rows where the condition is `TRUE`; it excludes both `FALSE` and `NA` values
+- If you want to preserve missing values, ask for them explicitly
+
+--
+
+&lt;br&gt;
+- If you want to determine if a value is missing, use `is.na()`
+
+
+```r
+  x &lt;- NA
+  is.na(x)
+```
+
+--
+
+.right[
+
+```
+## [1] TRUE
+```
+]
 
 ---
 
-class: top, center
+background-image: url("images/camera_filter_lens.jpg")
+background-position: left bottom
+background-size: 15%
 
-background-image: url("images/color-lens-filters.jpg")
-background-position: center
-background-size: cover
+# How to handle NA (cont'd)
+
+_**Question**_: List all Star Wars characters who _do not_ have a listed home world or species
+
+--
+
+_**Solution**_:
+
+
+```r
+* starwars %&gt;% filter(is.na(homeworld) | is.na(species)) %&gt;%
+  select(name, homeworld, species, films) %&gt;% slice_head(n=5)
+```
+
+--
 
 .right[
-  .larger[.embolden[
-  #Topics covered during next session:
-  &lt;br&gt;
-  #------------------------
-  ###Filter - How to Handle NA Values 
-  ###Filter - Filtering When Grouping
-  ###Filter - Overall Review
-  #------------------------
-  ]]
+
+```
+## # A tibble: 5 x 4
+##   name         homeworld species        films    
+##   &lt;chr&gt;        &lt;chr&gt;     &lt;chr&gt;          &lt;list&gt;   
+## 1 Yoda         &lt;NA&gt;      Yoda's species &lt;chr [5]&gt;
+## 2 IG-88        &lt;NA&gt;      Droid          &lt;chr [1]&gt;
+## 3 Arvel Crynyd &lt;NA&gt;      Human          &lt;chr [1]&gt;
+## 4 Qui-Gon Jinn &lt;NA&gt;      Human          &lt;chr [1]&gt;
+## 5 Ric Olié     Naboo     &lt;NA&gt;           &lt;chr [1]&gt;
+```
 ]
+
+---
+
+background-image: url("images/camera_filter_lens.jpg")
+background-position: left bottom
+background-size: 15%
+
+# Additional Concepts - Filtering when Grouping
+
+- Filtering may yield different results on grouped data frames | tibbles because expressions are computed within groups
+- Make sure you are aware when applying a global filter or when filtering on groups within the data frame | tibble
+
+--
+
+_**Example**_
+
+
+```r
+  #The following filters rows where `mass` is greater than the global average
+* starwars %&gt;% filter(mass &gt; mean(mass, na.rm = TRUE)) %&gt;%
+  select(name, height, mass, species) %&gt;% slice_head(n=5)
+```
+
+--
+
+.right[
+
+```
+## # A tibble: 5 x 4
+##   name                  height  mass species
+##   &lt;chr&gt;                  &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;  
+## 1 Darth Vader              202   136 Human  
+## 2 Owen Lars                178   120 Human  
+## 3 Chewbacca                228   112 Wookiee
+## 4 Jabba Desilijic Tiure    175  1358 Hutt   
+## 5 Jek Tono Porkins         180   110 Human
+```
+]
+
+---
+
+background-image: url("images/camera_filter_lens.jpg")
+background-position: left bottom
+background-size: 15%
+
+# Filtering when Grouping (cont'd)
+
+_**Grouped Example**_
+
+
+```r
+  #This example keeps rows where the `mass` is greater than the gender average
+* starwars %&gt;% group_by(gender) %&gt;% filter(mass &gt; mean(mass, na.rm = TRUE)) %&gt;%
+  select(name, height, mass, gender, species) %&gt;% slice_head(n=5)
+```
+
+--
+
+.right[
+
+```
+## # A tibble: 10 x 5
+## # Groups:   gender [2]
+##    name                  height   mass gender    species 
+##    &lt;chr&gt;                  &lt;int&gt;  &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;   
+##  1 Beru Whitesun lars       165   75   feminine  Human   
+##  2 Ayla Secura              178   55   feminine  Twi'lek 
+##  3 Luminara Unduli          170   56.2 feminine  Mirialan
+##  4 Zam Wesell               168   55   feminine  Clawdite
+##  5 Shaak Ti                 178   57   feminine  Togruta 
+##  6 Darth Vader              202  136   masculine Human   
+##  7 Owen Lars                178  120   masculine Human   
+##  8 Chewbacca                228  112   masculine Wookiee 
+##  9 Jabba Desilijic Tiure    175 1358   masculine Hutt    
+## 10 Jek Tono Porkins         180  110   masculine Human
+```
+]
+
+---
+
+background-image: url("images/camera_filter_lens.jpg")
+background-position: left bottom
+background-size: 15%
+
+# Code it Yourself!
+
+_**Question**_: Which non-Human Star Wars characters are in more than two films?
+
+--
+
+_**Solution**_
+
+
+```r
+* filter(starwars, species != "Human", length(films) &gt; 2)
+```
+
+.right[
+
+```
+## # A tibble: 48 x 14
+##    name    height  mass hair_color skin_color  eye_color birth_year sex   gender
+##    &lt;chr&gt;    &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;       &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
+##  1 C-3PO      167    75 &lt;NA&gt;       gold        yellow           112 none  mascu~
+##  2 R2-D2       96    32 &lt;NA&gt;       white, blue red               33 none  mascu~
+##  3 R5-D4       97    32 &lt;NA&gt;       white, red  red               NA none  mascu~
+##  4 Chewba~    228   112 brown      unknown     blue             200 male  mascu~
+##  5 Greedo     173    74 &lt;NA&gt;       green       black             44 male  mascu~
+##  6 Jabba ~    175  1358 &lt;NA&gt;       green-tan,~ orange           600 herm~ mascu~
+##  7 Yoda        66    17 white      green       brown            896 male  mascu~
+##  8 IG-88      200   140 none       metal       red               15 none  mascu~
+##  9 Bossk      190   113 none       green       red               53 male  mascu~
+## 10 Ackbar     180    83 none       brown mott~ orange            41 male  mascu~
+## # ... with 38 more rows, and 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;,
+## #   films &lt;list&gt;, vehicles &lt;list&gt;, starships &lt;list&gt;
+```
+]
+
+---
+
+# Review Concept Map
+
+&lt;center&gt;&lt;img src="images/dplyr_filter_009.png" width="650px" height="500px" /&gt;&lt;/center&gt;
 
 ---
 
@@ -347,7 +519,7 @@ background-size: cover
 
 .right[
   .larger[.embolden[
-  #See you after the Break!
+  #Thanks for Filtering!
   ]]
 ]
     </textarea>
@@ -357,7 +529,8 @@ background-size: cover
 "highlightStyle": "github",
 "highlightLines": true,
 "countIncrementalSlides": false,
-"ratio": "16:9"
+"ratio": "16:9",
+"slideNumberFormat": "<div class=\"progress-bar-container\">\n  <div class=\"progress-bar\" style=\"width: calc(%current% / %total% * 100%);\">\n  </div>\n"
 });
 if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   window.dispatchEvent(new Event('resize'));

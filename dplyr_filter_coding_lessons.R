@@ -13,14 +13,14 @@ view(starwars)
 ##>, >=, <, <=, != (not equal), == (equal)
 
 ### Filter the Star Wars characters to Human species only
-
+filter(starwars, species == "Human")
 
 #-----------------------------------------------------------------------------#
 
 
 # Logical Operators
 
-##Multiple arguments to filter() are combined with "and":
+##Multiple arguments separated by "," within `filter()` are interpreted as "and" condition
 ##Every expression must be true in order for a row to be included in output
 ##For other types of combinations you'll need to use Boolean operators
 ##  & is "and"
